@@ -39,7 +39,7 @@ public class PlayerMove : MonoBehaviour
 	{
 		animator.SetFloat("Horizontal", joystick.Horizontal);
 		animator.SetFloat("Vertical", joystick.Vertical);
-		if (joystick.Horizontal > 0f || joystick.Vertical > 0f)
+		if (joystick.Horizontal != 0f || joystick.Vertical != 0f)
 		{
 			animator.SetBool("Moving", true);
 		}
