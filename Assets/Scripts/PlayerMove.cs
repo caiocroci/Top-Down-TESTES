@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityStandardAssets.CrossPlatformInput;
 
 public class PlayerMove : MonoBehaviour
 {
@@ -21,6 +22,11 @@ public class PlayerMove : MonoBehaviour
 		JoystickMove(); //função que chama a movimentação do player usando o joystick
 
 		Animation(); //função que chama as animações de movimentação do player
+
+		if (CrossPlatformInputManager.GetButtonDown("Fire1"))  
+		{
+			Debug.Log("Botão Funcionando");
+		}
 	}
 
 	void JoystickMove()
