@@ -19,16 +19,17 @@ public class DialogTest : MonoBehaviour
 	// Start is called before the first frame update
 	void Start()
     {
-
 	}
 
 	private void Update()
 	{
-		if(textDisplay.text == sentences[index])
+		if (textDisplay.text == sentences[index])
 		{
 			canContinue = true;
 		}
 		DialogInputSystem();
+
+		
 	}
 
 	private void OnTriggerEnter2D(Collider2D collision)
