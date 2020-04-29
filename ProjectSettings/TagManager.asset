@@ -6,6 +6,10 @@ TagManager:
   tags:
   - Door
   - Waypoints
+  - RustedDoor
+  - GoldenDoor
+  - RustedKey
+  - GoldenKey
   layers:
   - Default
   - TransparentFX

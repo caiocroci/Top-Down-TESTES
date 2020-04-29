@@ -41,7 +41,6 @@ public class EnemyMove : MonoBehaviour
 		transform.position = Vector2.MoveTowards(transform.position, Wpoints.waypoints[waypointIndex].position, speed * Time.deltaTime);
 		directionNew = transform.position;
 		direction = (directionNew - directionNow).normalized;
-		Debug.Log(direction.y);
 		if (Vector2.Distance(transform.position, Wpoints.waypoints[waypointIndex].position) < 0.1f)
 		{
 			StartCoroutine(WaitToContinue());

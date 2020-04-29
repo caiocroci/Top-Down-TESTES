@@ -6,4 +6,10 @@ public class Inventory : MonoBehaviour
 {
 	public bool[] isFull;
 	public GameObject[] slots;
+	public string rustedKey;
+	public string goldenKey;
+
+	public void Update()
+	{
+	}
 }

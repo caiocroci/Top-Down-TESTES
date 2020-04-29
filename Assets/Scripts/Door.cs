@@ -2,40 +2,53 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityStandardAssets.CrossPlatformInput;
 
 public class Door : MonoBehaviour
 {
 	public SpriteRenderer doorSprite;
 	public BoxCollider2D doorCollider;
+	public Inventory inventory;
 	public bool canOpen;
+	public bool playerInRange;
 
-    // Start is called before the first frame update
     void Start()
     {
         
     }
 
-    // Update is called once per frame
     void Update()
     {
-        
+		OpenDoor();
     }
 
 	private void OnTriggerEnter2D(Collider2D collision)
 	{
 		if (collision.CompareTag("Player"))
 		{
-			canOpen = true;
+			playerInRange = true;
 		}
+	}
+
+	private void OnTriggerExit2D(Collider2D collision)
+	{
+		playerInRange = false;
 	}
 
 	public void OpenDoor()
 	{
-		if(canOpen == true)
-		{
-			doorSprite.enabled = false;
-			doorCollider.enabled = false;
+		if(playerInRange == true )
+		{ 
+			if(inventory.rustedKey == gameObject.tag && CrossPlatformInputManager.GetButtonDown("Fire1"))
+			{
+				doorSprite.enabled = false;
+				doorCollider.enabled = false;
+			}
+			if (inventory.goldenKey == gameObject.tag && CrossPlatformInputManager.GetButtonDown("Fire1"))
+			{
+				doorSprite.enabled = false;
+				doorCollider.enabled = false;
+			}
 		}
-
 	}
 }
