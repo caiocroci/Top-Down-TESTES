@@ -10,6 +10,8 @@ TagManager:
   - GoldenDoor
   - RustedKey
   - GoldenKey
+  - Paper
+  - OneTimeEvent
   layers:
   - Default
   - TransparentFX

@@ -15,10 +15,12 @@ public class DialogTest : MonoBehaviour
 	private int index;
 	public float typingSpeed;
 	public bool canContinue;
+	public GameObject image;
 
 	// Start is called before the first frame update
 	void Start()
     {
+
 	}
 
 	private void Update()
@@ -27,9 +29,17 @@ public class DialogTest : MonoBehaviour
 		{
 			canContinue = true;
 		}
+
 		DialogInputSystem();
 
-		
+		if (gameObject.tag == "Paper")
+		{
+			image.SetActive(false);
+		}
+		else
+		{
+			image.SetActive(true);
+		}
 	}
 
 	private void OnTriggerEnter2D(Collider2D collision)
@@ -68,6 +78,10 @@ public class DialogTest : MonoBehaviour
 		{
 			dialogBox.SetActive(false);
 			index = 0;
+			if (gameObject.tag == "OneTimeEvent")
+			{
+				Destroy(gameObject);
+			}
 		}
 	}
 
