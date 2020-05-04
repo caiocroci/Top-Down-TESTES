@@ -12,6 +12,7 @@ TagManager:
   - GoldenKey
   - Paper
   - OneTimeEvent
+  - CheckPoint
   layers:
   - Default
   - TransparentFX
