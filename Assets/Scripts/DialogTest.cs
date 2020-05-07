@@ -20,7 +20,7 @@ public class DialogTest : MonoBehaviour
 	// Start is called before the first frame update
 	void Start()
     {
-
+	
 	}
 
 	private void Update()
@@ -30,16 +30,8 @@ public class DialogTest : MonoBehaviour
 			canContinue = true;
 		}
 
-		DialogInputSystem();
 
-		if (gameObject.tag == "Paper")
-		{
-			image.SetActive(false);
-		}
-		else
-		{
-			image.SetActive(true);
-		}
+		DialogInputSystem();
 	}
 
 	private void OnTriggerEnter2D(Collider2D collision)
@@ -67,6 +59,7 @@ public class DialogTest : MonoBehaviour
 			if (dialogBox.activeInHierarchy == false)
 			{
 				dialogBox.SetActive(true);
+				image.SetActive(true);
 				StartCoroutine(Type());
 			}
 			else if (CrossPlatformInputManager.GetButtonDown("Fire1") && index < sentences.Length - 1 && canContinue)
@@ -77,6 +70,7 @@ public class DialogTest : MonoBehaviour
 		else if (dialogBox && index == sentences.Length - 1)
 		{
 			dialogBox.SetActive(false);
+			image.SetActive(false);
 			index = 0;
 			if (gameObject.tag == "OneTimeEvent")
 			{
