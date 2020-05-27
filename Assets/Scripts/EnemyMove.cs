@@ -16,10 +16,16 @@ public class EnemyMove : MonoBehaviour
 	public Vector2 directionNew;
 	public Vector2 directionNow;
 
-    // Start is called before the first frame update
-    void Start()
+	public Transform startPosition;
+	public Transform[] wayRayArray;
+	public float distance;
+
+
+	// Start is called before the first frame update
+	void Start()
     {
 		Wpoints = GameObject.FindGameObjectWithTag("Waypoints").GetComponent<Waypoints>();
+		Physics2D.queriesStartInColliders = false;
     }
 
     // Update is called once per frame
@@ -27,6 +33,8 @@ public class EnemyMove : MonoBehaviour
     {
 		EnemyPatrol();
 		Animation();
+		//StealthRaycast();
+
     }
 
 	IEnumerator WaitToContinue()
@@ -74,6 +82,27 @@ public class EnemyMove : MonoBehaviour
 		{
 			animator.SetBool("Moving", false);
 		}
+	}
+
+	void StealthRaycast()
+	{
+		Vector2 myPosition = wayRayArray[0].position;
+		Vector2 myPosition2 = wayRayArray[1].transform.position + transform.position;
+		RaycastHit2D hitInfo = Physics2D.Linecast(startPosition.position, myPosition) ;
+		RaycastHit2D hitInfo2 = Physics2D.Raycast(transform.position, myPosition2, distance);
+
+
+		if (hitInfo.collider.CompareTag("RustedDoor"))
+		{
+			Debug.Log("Acertou porta");
+			Debug.DrawLine(startPosition.position, myPosition);
+		}
+
+		if (hitInfo2.collider.CompareTag("RustedDoor"))
+		{
+			Debug.Log("Acertou porta atrás");
+		}
+
 	}
 
 }
