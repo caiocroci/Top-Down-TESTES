@@ -14,7 +14,8 @@ public class MenuPrincipal : MonoBehaviour
         public GameObject Musica;
         public GameObject Voltar;
     public GameObject Controle;
-        public bool OnclickCon = false;
+        public GameObject ControlesPainel;
+        public GameObject VoltarControle;
     public GameObject Sair;
   
     
@@ -22,10 +23,18 @@ public class MenuPrincipal : MonoBehaviour
 
     public void menuPrincipal()
     {
+        LeanTween.moveLocal(Menu, new Vector3(0.008f, -1.878f, 1), 0.6f);
+        LeanTween.scale(Menu, new Vector3(0.019f, 0.019f, 1), 0.6f).setOnComplete(IniciarJogo);
+
+      
+    }
+    void IniciarJogo()
+    {
         SceneManager.LoadScene(1);
     }
     public void opcoes()
     {
+            ZoomIn();
             LeanTween.scale(Jogar, new Vector3(0, 0, 0), 0.2f);
             
             LeanTween.scale(Controle, new Vector3(0, 0, 0), 0.2f);
@@ -45,12 +54,29 @@ public class MenuPrincipal : MonoBehaviour
     }
     public void VoltarOpcoes()
     {
+        ZoomOut();
             LeanTween.moveLocal(Opcoes, new Vector3(97.2f, -120.84f, 0f), 0.5f).setOnComplete(OpcoesOpen);
             Voltar.SetActive(false);
             Musica.SetActive(false);
             Som.SetActive(false);
             
 
+    }
+    public void VoltarControles()
+    {
+        ZoomOut();
+       
+        LeanTween.moveLocal(Controle, new Vector3(-99.55499f, -204.3f, 0f), 0.5f);
+        LeanTween.scale(ControlesPainel, new Vector3(0, 0, 0), 0.5f);
+        ControlesPainel.SetActive(false);
+        Jogar.SetActive(true);
+        LeanTween.scale(Jogar, new Vector3(1, 1, 1), 0.2f);
+        Opcoes.SetActive(true);
+        LeanTween.scale(Opcoes, new Vector3(1, 1, 1), 0.2f);
+        Sair.SetActive(true);
+        LeanTween.scale(Sair, new Vector3(1, 1, 1), 0.2f);
+        VoltarControle.SetActive(false);
+       
     }
         void OpcoesOpen()
         {
@@ -62,39 +88,49 @@ public class MenuPrincipal : MonoBehaviour
         Sair.SetActive(true);
         LeanTween.scale(Sair, new Vector3(1, 1, 1), 0.4f);
     }
+    public void ControlesOpen()
+    {
+        Jogar.SetActive(true);
+        LeanTween.scale(Jogar, new Vector3(1, 1, 1), 0.4f);
+        Opcoes.SetActive(true);
+        LeanTween.scale(Controle, new Vector3(1, 1, 1), 0.4f);
+        Sair.SetActive(true);
+        LeanTween.scale(Sair, new Vector3(1, 1, 1), 0.4f);
+    }
     public void controle()
     {
-        if (OnclickCon ==false)
-        {
+            ZoomIn();
             LeanTween.scale(Jogar, new Vector3(0, 0, 0), 0.2f);
 
             LeanTween.scale(Opcoes, new Vector3(0, 0, 0), 0.2f);
 
-            LeanTween.scale(Sair, new Vector3(0, 0, 0), 0.2f).setOnComplete(ControleClose);
+            LeanTween.scale(Sair, new Vector3(0, 0, 0), 0.2f);
 
-            LeanTween.moveLocal(Controle, new Vector3(0, -66, 0), 0.5f).setOnComplete(ControleClose);
+            LeanTween.scale(ControlesPainel, new Vector3 (0 ,0 ,0), 0.2f);
+           
+            LeanTween.moveLocal(Controle, new Vector3(0, -66, 0), 0.5f).setOnComplete(ControleOpen);
+
+            VoltarControle.SetActive(true);
         }
-        else
-        {
-            Jogar.SetActive(true);
-            LeanTween.scale(Jogar, new Vector3(1, 1, 1), 0.2f);
-            Opcoes.SetActive(true);
-            LeanTween.scale(Opcoes, new Vector3(1, 1, 1), 0.2f);
-            Sair.SetActive(true);
-            LeanTween.scale(Sair, new Vector3(1, 1, 1), 0.2f);
-            LeanTween.moveLocal(Controle, new Vector3(-99.55499f, -204.3f, 0f), 0.5f).setOnComplete(ControleOpen);
-        }
-    }
-    public void ControleClose()
+ 
+    public void ControleOpen()
     {
+        ControlesPainel.SetActive(true);
+        LeanTween.scale(ControlesPainel, new Vector3(1, 1, 1), 0.5f);
         Jogar.SetActive(false);
         Opcoes.SetActive(false);
         Sair.SetActive(false);
-        OnclickCon = true;
 
     }
-    public void ControleOpen()
+    public void ZoomIn() {
+        LeanTween.moveLocal(Menu, new Vector3(-0.06f, 3.13f, 1), 0.6f);
+        LeanTween.scale(Menu, new Vector3(0.019f, 0.019f, 1), 0.6f);
+      
+    }
+    public void ZoomOut()
     {
-        OnclickCon = false;
+        LeanTween.moveLocal(Menu, new Vector3(0.01f, 0.01f, 10), 0.6f);
+        LeanTween.scale(Menu, new Vector3(0.00751678f, 0.007518565f, 00616676f), 0.6f);
+        
     }
 }
